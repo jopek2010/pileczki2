@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Piłka góra–dół</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+      display: block;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="canvas" width="400" height="400"></canvas>
+
+<script>
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+
+  const radius = 12;
+  let y = 200;    
+  let speed = 8;   
+
+  function draw() {
+    // tło
+    ctx.fillStyle = "rgb(151, 244, 247)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+
+    ctx.fillStyle = "red";
+    ctx.beginPath();
+    ctx.arc(canvas.width / 2, y, radius, 0, Math.PI * 2);
+    ctx.fill();
+
+
+    y += speed;
+
+    if (y >= canvas.height - radius || y <= radius) {
+      speed = -speed;
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+</script>
+
+</body>
+</html>
